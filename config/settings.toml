@@ -1,0 +1,13 @@
+[input]
+yearly_glob = "/home/patrick/billboard-ai-hit/data/raw/*.csv"
+
+[output]
+dataset_path = "/home/patrick/billboard-ai-hit/data/processed/billboard_yearly.csv"
+summary_path = "/home/patrick/billboard-ai-hit/data/processed/summary.json"
+cycle_analysis_path = "/home/patrick/billboard-ai-hit/data/processed/cycle_analysis.json"
+
+[genres]
+lookup_csv = "/home/patrick/billboard-ai-hit/data/reference/genre_lookup.csv"
+
+[analysis]
+rolling_window = 3

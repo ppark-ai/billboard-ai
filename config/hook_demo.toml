@@ -1,0 +1,47 @@
+[render]
+sample_rate = 16000
+swing = 0.08
+master_gain = 0.85
+
+[output]
+demo_dir = "/home/patrick/billboard-ai-hit/audio/hook_demo_batches"
+manifest_path = "/home/patrick/billboard-ai-hit/audio/hook_demo_batches/manifest.json"
+
+[[lanes]]
+name = "heartbreak-rnb-pop"
+key = "A"
+mode = "minor"
+tempo_bpm = 102
+duration_seconds = 16
+demo_count = 2
+include_guide_vocal = true
+chord_loop = ["i", "VI", "III", "VII"]
+energy_arc = [0.32, 0.6, 0.95]
+motif_steps = [0, 2, 4, 2]
+motif_rhythm = [1.0, 0.5, 0.5, 1.0]
+
+[[lanes]]
+name = "festival-pop-anthem"
+key = "C"
+mode = "major"
+tempo_bpm = 124
+duration_seconds = 18
+demo_count = 2
+include_guide_vocal = false
+chord_loop = ["I", "V", "vi", "IV"]
+energy_arc = [0.42, 0.78, 1.0]
+motif_steps = [0, 4, 5, 4]
+motif_rhythm = [0.5, 0.5, 1.0, 1.0]
+
+[[lanes]]
+name = "alt-dance-nocturne"
+key = "D"
+mode = "dorian"
+tempo_bpm = 118
+duration_seconds = 20
+demo_count = 2
+include_guide_vocal = true
+chord_loop = ["i", "IV", "VII", "III"]
+energy_arc = [0.38, 0.7, 0.92]
+motif_steps = [0, 3, 5, 7]
+motif_rhythm = [1.0, 1.0, 0.5, 0.5]

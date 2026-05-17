@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Billboard AI Hit — Sprint 1 Demo Batch</title>
+  <style>
+    :root { color-scheme: dark; --bg:#0b1020; --panel:#121933; --muted:#9fb0d3; --text:#eef2ff; --accent:#7dd3fc; --line:#263255; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background:linear-gradient(180deg,#0b1020,#111937 40%,#0b1020); color:var(--text); }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 40px 20px 80px; }
+    .hero { margin-bottom: 28px; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 8px; }
+    .hero p { color: var(--muted); max-width: 840px; line-height:1.6; }
+    .badges { display:flex; flex-wrap:wrap; gap:10px; margin:16px 0 0; }
+    .badge { border:1px solid var(--line); background:rgba(125,211,252,.08); color:var(--accent); padding:8px 12px; border-radius:999px; font-size:.9rem; }
+    .notice { border:1px solid #53461b; background:#2a2209; color:#f7e3a2; padding:14px 16px; border-radius:14px; margin: 22px 0 26px; }
+    .card { background: rgba(18,25,51,.9); border:1px solid var(--line); border-radius:20px; padding:22px; margin:18px 0; box-shadow: 0 10px 30px rgba(0,0,0,.18); }
+    .eyebrow { color: var(--accent); font-size:.9rem; text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; }
+    h2 { margin: 0 0 12px; font-size: 1.5rem; }
+    h3 { margin-bottom:10px; font-size:1rem; }
+    p, li { line-height:1.55; }
+    audio { width:100%; margin: 12px 0 10px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+    a { color: var(--accent); }
+    .footer { margin-top: 26px; color: var(--muted); font-size:.95rem; }
+    code { background:#0d1430; border:1px solid var(--line); padding:2px 6px; border-radius:8px; }
+  </style>
+</head>
+<body>
+  <main class='wrap'>
+    <section class='hero'>
+      <h1>Billboard AI Hit — Sprint 1 Demo Batch</h1>
+      <p>Six prototype-grade local hook demos rendered from the sprint-1 writing pack. The review order is intentionally front-loaded: 1A, 1B, 3A first, then 1C, 3B, 2A. Each card below includes an audio player plus the intended clip moments and provenance notes carried in the manifest.</p>
+      <div class='badges'>
+        <span class='badge'>6 demos</span>
+        <span class='badge'>Prototype WAV renders</span>
+        <span class='badge'>Review order: 1A → 1B → 3A → 1C → 3B → 2A</span>
+      </div>
+    </section>
+    <div class='notice'>These are short local prototype renders with synthetic guide vocals where enabled. The listed clip timestamps are writing-pack targets, not measured offsets inside these short WAV files.</div>
+    
+    <section class='card'>
+      <div class='eyebrow'>Lane 1 Demo 1A · Lane 1</div>
+      <h2>Back in Color / Out Your Frame</h2>
+      <p><strong>Slug:</strong> lane1-demo1a-back-in-color<br>
+      <strong>Duration:</strong> 17.0s · <strong>Tempo:</strong> 120 BPM · <strong>Key:</strong>  </p>
+      <audio controls preload='none' src='audio/sprint1_local_demo_batch/lane1-demo1a-back-in-color.wav'></audio>
+      <div class='grid'>
+        <div>
+          <h3>Intended clip targets</h3>
+          <ul><li>0:11-0:19: Now I&#x27;m back in color / Back where the bright lights are</li><li>0:19-0:25: You lost me in the shadows / I found me in the dark</li><li>1:37-1:45: final chorus entry with bigger drums and vocal stack</li></ul>
+        </div>
+        <div>
+          <h3>Provenance / notes</h3>
+          <ul><li>Source brief: sprint1_writing_pack.md from kanban task t_1d66dedc</li><li>Texture target: synthetic pulse + live-feel drums</li><li>Prototype engine: local no-Suno hook demo renderer</li></ul>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class='card'>
+      <div class='eyebrow'>Lane 1 Demo 1B · Lane 1</div>
+      <h2>Fits Me Now / No Small Rooms</h2>
+      <p><strong>Slug:</strong> lane1-demo1b-fits-me-now<br>
+      <strong>Duration:</strong> 16.0s · <strong>Tempo:</strong> 116 BPM · <strong>Key:</strong>  </p>
+      <audio controls preload='none' src='audio/sprint1_local_demo_batch/lane1-demo1b-fits-me-now.wav'></audio>
+      <div class='grid'>
+        <div>
+          <h3>Intended clip targets</h3>
+          <ul><li>0:14-0:22: No small rooms in my head tonight / No dim version under your light</li><li>0:22-0:29: It finally fits me now / This skin, this step, this city sound</li><li>1:28-1:36: post-chorus Fits me now loop with full width</li></ul>
+        </div>
+        <div>
+          <h3>Provenance / notes</h3>
+          <ul><li>Source brief: sprint1_writing_pack.md from kanban task t_1d66dedc</li><li>Texture target: cleaner guitar/pluck support with brighter radio-pop width</li><li>Prototype engine: local no-Suno hook demo renderer</li></ul>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class='card'>
+      <div class='eyebrow'>Lane 3 Demo 3A · Lane 3</div>
+      <h2>County Line Light / Rearview Halo</h2>
+      <p><strong>Slug:</strong> lane3-demo3a-county-line-light<br>
+      <strong>Duration:</strong> 18.0s · <strong>Tempo:</strong> 110 BPM · <strong>Key:</strong>  </p>
+      <audio controls preload='none' src='audio/sprint1_local_demo_batch/lane3-demo3a-county-line-light.wav'></audio>
+      <div class='grid'>
+        <div>
+          <h3>Intended clip targets</h3>
+          <ul><li>0:16-0:24: County line light on the hood of this car</li><li>0:24-0:32: I ain&#x27;t running from home, I&#x27;m running into her</li><li>1:34-1:42: I crossed one little border / And the whole sky came through</li></ul>
+        </div>
+        <div>
+          <h3>Provenance / notes</h3>
+          <ul><li>Source brief: sprint1_writing_pack.md from kanban task t_1d66dedc</li><li>Texture target: cleaner country-pop texture with real guitar focus</li><li>Prototype engine: local no-Suno hook demo renderer</li></ul>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class='card'>
+      <div class='eyebrow'>Lane 1 Demo 1C · Lane 1</div>
+      <h2>Name on Neon / Fits Right Again</h2>
+      <p><strong>Slug:</strong> lane1-demo1c-name-on-neon<br>
+      <strong>Duration:</strong> 15.0s · <strong>Tempo:</strong> 126 BPM · <strong>Key:</strong>  </p>
+      <audio controls preload='none' src='audio/sprint1_local_demo_batch/lane1-demo1c-name-on-neon.wav'></audio>
+      <div class='grid'>
+        <div>
+          <h3>Intended clip targets</h3>
+          <ul><li>0:07-0:15: Got my name on neon / Burning where the doubt was</li><li>0:15-0:22: Every little heartbreak / Lighting me up all at once</li><li>1:26-1:34: post-chorus Neon, neon loop</li></ul>
+        </div>
+        <div>
+          <h3>Provenance / notes</h3>
+          <ul><li>Source brief: sprint1_writing_pack.md from kanban task t_1d66dedc</li><li>Texture target: alternate title/hook phrase; intro under 10 seconds</li><li>Prototype engine: local no-Suno hook demo renderer</li></ul>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class='card'>
+      <div class='eyebrow'>Lane 3 Demo 3B · Lane 3</div>
+      <h2>Gold Mile / Rearview Gold</h2>
+      <p><strong>Slug:</strong> lane3-demo3b-rearview-gold<br>
+      <strong>Duration:</strong> 19.0s · <strong>Tempo:</strong> 114 BPM · <strong>Key:</strong>  </p>
+      <audio controls preload='none' src='audio/sprint1_local_demo_batch/lane3-demo3b-rearview-gold.wav'></audio>
+      <div class='grid'>
+        <div>
+          <h3>Intended clip targets</h3>
+          <ul><li>0:13-0:21: Rearview gold, all over the glass</li><li>0:21-0:29: I got a long road singing under me / And a better life in the passenger seat</li><li>1:31-1:39: That&#x27;s what freedom looks like now / Sun on the past, hands on the wheel</li></ul>
+        </div>
+        <div>
+          <h3>Provenance / notes</h3>
+          <ul><li>Source brief: sprint1_writing_pack.md from kanban task t_1d66dedc</li><li>Texture target: same topline family with more pop-forward drums/synth</li><li>Prototype engine: local no-Suno hook demo renderer</li></ul>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class='card'>
+      <div class='eyebrow'>Lane 2 Demo 2A · Lane 2</div>
+      <h2>Leave the Light / Bad Idea Outfit</h2>
+      <p><strong>Slug:</strong> lane2-demo2a-leave-the-light<br>
+      <strong>Duration:</strong> 17.0s · <strong>Tempo:</strong> 104 BPM · <strong>Key:</strong>  </p>
+      <audio controls preload='none' src='audio/sprint1_local_demo_batch/lane2-demo2a-leave-the-light.wav'></audio>
+      <div class='grid'>
+        <div>
+          <h3>Intended clip targets</h3>
+          <ul><li>0:18-0:26: Say don&#x27;t come over / Leave the light, leave the light</li><li>0:26-0:33: silence-drop into I&#x27;m already outside</li><li>1:40-1:47: bridge into final stripped hook</li></ul>
+        </div>
+        <div>
+          <h3>Provenance / notes</h3>
+          <ul><li>Source brief: sprint1_writing_pack.md from kanban task t_1d66dedc</li><li>Texture target: minimal, nocturnal, close-mic confessional version</li><li>Prototype engine: local no-Suno hook demo renderer</li></ul>
+        </div>
+      </div>
+    </section>
+    
+    <section class='card'>
+      <h2>How to review performance</h2>
+      <ol>
+        <li>Use at least 3 independent raters.</li>
+        <li>Score hook recall, emotional immediacy, clip usability, replay tension, and lane fit on a 1–5 scale.</li>
+        <li>Weighted total formula: <code>6×hook + 5×emotion + 4×clip + 3×replay + 2×lane</code>.</li>
+        <li>Promote only demos at 75+ with hook/emotion/clip means all at 4+ and no originality concern.</li>
+      </ol>
+      <p>Source files: <a href='audio/sprint1_local_demo_batch/manifest.json'>manifest.json</a> · <a href='audio/sprint1_local_demo_batch/README.md'>batch README</a></p>
+    </section>
+    <p class='footer'>Generated from the local sprint-1 manifest in <code>audio/sprint1_local_demo_batch/manifest.json</code>.</p>
+  </main>
+</body>
+</html>

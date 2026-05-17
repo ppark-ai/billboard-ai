@@ -1,0 +1,26 @@
+{
+  "years": [
+    1965
+  ],
+  "yearly_metrics": [
+    {
+      "year": 1965,
+      "track_count": 2,
+      "average_popularity_score": 50.0,
+      "genre_share": {
+        "pop": 0.5,
+        "rock": 0.5
+      },
+      "popularity_weighted_traits": {
+        "chart_rank": 1.2574,
+        "weeks_on_chart": 12.9604,
+        "peak_position": 1.0198
+      }
+    }
+  ],
+  "rolling_windows": [],
+  "recurrence_candidates": [],
+  "cycle_detection_notes": [
+    "placeholder cycle-detection hooks emitted; replace recurrence scoring with spectral/autocorrelation analysis once richer feature coverage is available"
+  ]
+}

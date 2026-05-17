@@ -1,0 +1,3 @@
+year,chart_rank,title,artist,title_norm,artist_norm,weeks_on_chart,peak_position,genre,era_bucket,weeks_p95_in_year,year_end_score,peak_score,weeks_score,popularity_score_raw_100,raw_year_percentile,raw_era_percentile,popularity_score_era_adj_100,popularity_score,popularity_label,confidence_score,confidence_label
+1965,1,Help!,The Beatles,help,the beatles,13,1,rock,1958-1990,12.8,1.0,1.0,1.0,100.0,1.0,1.0,100.0,100.0,canonical_hit,1.0,high
+1965,27,California Girls,The Beach Boys,california girls,the beach boys,9,3,pop,1958-1990,12.8,0.5807,0.8831,0.8773,70.0174,0.0,0.0,0.0,0.0,lower_impact_year_end_entry,1.0,high

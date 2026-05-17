@@ -1,0 +1,303 @@
+{
+  "config_path": "config/hook_demo.toml",
+  "demo_dir": "/home/patrick/billboard-ai-hit/audio/hook_demo_batches",
+  "run_command": "PYTHONPATH=src python3 scripts/run_hook_demo_batch.py config/hook_demo.toml",
+  "lanes": [
+    {
+      "name": "heartbreak-rnb-pop",
+      "key": "A",
+      "mode": "minor",
+      "tempo_bpm": 102,
+      "duration_seconds": 16.0,
+      "demo_count": 2,
+      "include_guide_vocal": true,
+      "chord_loop": [
+        "i",
+        "VI",
+        "III",
+        "VII"
+      ],
+      "energy_arc": [
+        0.32,
+        0.6,
+        0.95
+      ],
+      "motif_steps": [
+        0,
+        2,
+        4,
+        2
+      ],
+      "motif_rhythm": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ]
+    },
+    {
+      "name": "festival-pop-anthem",
+      "key": "C",
+      "mode": "major",
+      "tempo_bpm": 124,
+      "duration_seconds": 18.0,
+      "demo_count": 2,
+      "include_guide_vocal": false,
+      "chord_loop": [
+        "I",
+        "V",
+        "vi",
+        "IV"
+      ],
+      "energy_arc": [
+        0.42,
+        0.78,
+        1.0
+      ],
+      "motif_steps": [
+        0,
+        4,
+        5,
+        4
+      ],
+      "motif_rhythm": [
+        0.5,
+        0.5,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "alt-dance-nocturne",
+      "key": "D",
+      "mode": "dorian",
+      "tempo_bpm": 118,
+      "duration_seconds": 20.0,
+      "demo_count": 2,
+      "include_guide_vocal": true,
+      "chord_loop": [
+        "i",
+        "IV",
+        "VII",
+        "III"
+      ],
+      "energy_arc": [
+        0.38,
+        0.7,
+        0.92
+      ],
+      "motif_steps": [
+        0,
+        3,
+        5,
+        7
+      ],
+      "motif_rhythm": [
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ]
+    }
+  ],
+  "demos": [
+    {
+      "lane": "heartbreak-rnb-pop",
+      "slug": "heartbreak-rnb-pop-01",
+      "audio_path": "/home/patrick/billboard-ai-hit/audio/hook_demo_batches/heartbreak-rnb-pop-01.wav",
+      "tempo_bpm": 100,
+      "duration_seconds": 17.0,
+      "chord_loop": [
+        "i",
+        "VI",
+        "III",
+        "VII"
+      ],
+      "energy_arc": [
+        0.32,
+        0.6,
+        0.95
+      ],
+      "motif_steps": [
+        2,
+        0,
+        2,
+        4
+      ],
+      "motif_rhythm": [
+        0.5,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "include_guide_vocal": true,
+      "sample_rate": 16000,
+      "seed": 7124996521424598575
+    },
+    {
+      "lane": "heartbreak-rnb-pop",
+      "slug": "heartbreak-rnb-pop-02",
+      "audio_path": "/home/patrick/billboard-ai-hit/audio/hook_demo_batches/heartbreak-rnb-pop-02.wav",
+      "tempo_bpm": 103,
+      "duration_seconds": 15.0,
+      "chord_loop": [
+        "III",
+        "VII",
+        "i",
+        "VI"
+      ],
+      "energy_arc": [
+        0.32,
+        0.6,
+        0.95
+      ],
+      "motif_steps": [
+        2,
+        4,
+        2,
+        0
+      ],
+      "motif_rhythm": [
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "include_guide_vocal": false,
+      "sample_rate": 16000,
+      "seed": 13320776036458274373
+    },
+    {
+      "lane": "festival-pop-anthem",
+      "slug": "festival-pop-anthem-01",
+      "audio_path": "/home/patrick/billboard-ai-hit/audio/hook_demo_batches/festival-pop-anthem-01.wav",
+      "tempo_bpm": 124,
+      "duration_seconds": 19.0,
+      "chord_loop": [
+        "V",
+        "vi",
+        "IV",
+        "I"
+      ],
+      "energy_arc": [
+        0.42,
+        0.78,
+        1.0
+      ],
+      "motif_steps": [
+        4,
+        0,
+        4,
+        5
+      ],
+      "motif_rhythm": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "include_guide_vocal": false,
+      "sample_rate": 16000,
+      "seed": 3419462692931879747
+    },
+    {
+      "lane": "festival-pop-anthem",
+      "slug": "festival-pop-anthem-02",
+      "audio_path": "/home/patrick/billboard-ai-hit/audio/hook_demo_batches/festival-pop-anthem-02.wav",
+      "tempo_bpm": 126,
+      "duration_seconds": 17.0,
+      "chord_loop": [
+        "IV",
+        "I",
+        "V",
+        "vi"
+      ],
+      "energy_arc": [
+        0.42,
+        0.78,
+        1.0
+      ],
+      "motif_steps": [
+        4,
+        0,
+        4,
+        5
+      ],
+      "motif_rhythm": [
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "include_guide_vocal": false,
+      "sample_rate": 16000,
+      "seed": 17869841991278996739
+    },
+    {
+      "lane": "alt-dance-nocturne",
+      "slug": "alt-dance-nocturne-01",
+      "audio_path": "/home/patrick/billboard-ai-hit/audio/hook_demo_batches/alt-dance-nocturne-01.wav",
+      "tempo_bpm": 117,
+      "duration_seconds": 20.0,
+      "chord_loop": [
+        "III",
+        "i",
+        "IV",
+        "VII"
+      ],
+      "energy_arc": [
+        0.38,
+        0.7,
+        0.92
+      ],
+      "motif_steps": [
+        5,
+        7,
+        0,
+        3
+      ],
+      "motif_rhythm": [
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "include_guide_vocal": true,
+      "sample_rate": 16000,
+      "seed": 7601407350373929406
+    },
+    {
+      "lane": "alt-dance-nocturne",
+      "slug": "alt-dance-nocturne-02",
+      "audio_path": "/home/patrick/billboard-ai-hit/audio/hook_demo_batches/alt-dance-nocturne-02.wav",
+      "tempo_bpm": 116,
+      "duration_seconds": 19.0,
+      "chord_loop": [
+        "III",
+        "i",
+        "IV",
+        "VII"
+      ],
+      "energy_arc": [
+        0.38,
+        0.7,
+        0.92
+      ],
+      "motif_steps": [
+        3,
+        5,
+        7,
+        0
+      ],
+      "motif_rhythm": [
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "include_guide_vocal": false,
+      "sample_rate": 16000,
+      "seed": 11065624083868137485
+    }
+  ]
+}
