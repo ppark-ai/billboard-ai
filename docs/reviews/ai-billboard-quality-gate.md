@@ -3,13 +3,13 @@
 **Status:** final winner published to web from the automated Billboard-calibrated batch  
 **Winner:** `promo-name-on-neon-direct-chorus`  
 **Title:** Name on Neon  
-**AI score:** 94.28  
+**AI score:** 93.49  
 **Release label:** `release_watchlist`
 
 ## Billboard reference-calibration neighbors shown on the site
-- 2015 #1 **Uptown Funk** — Mark Ronson featuring Bruno Mars
 - 2024 #3 **Beautiful Things** — Benson Boone
-- 1985 #1 **Careless Whisper** — George Michael
+- 2015 #1 **Uptown Funk** — Mark Ronson featuring Bruno Mars
+- 1975 #2 **Rhinestone Cowboy** — Glen Campbell
 
 These labels mean nearest audio-feature matches inside the Billboard preview reference set. They are not claims of melodic copying or source-song derivation.
 

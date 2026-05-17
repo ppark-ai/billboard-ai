@@ -1,7 +1,7 @@
 {
   "winner_slug": "promo-name-on-neon-direct-chorus",
   "winner_title": "Name on Neon",
-  "overall_score": 94.28,
+  "overall_score": 93.49,
   "release_readiness": "release_watchlist",
   "lyrics_lines": [
     "Got my name on neon",
@@ -17,25 +17,25 @@
   "reference_profile_name": "billboard-year-end-preview-reference-v1",
   "nearest_billboard_reference_songs": [
     {
-      "title": "Uptown Funk",
-      "artist": "Mark Ronson featuring Bruno Mars",
-      "year": 2015,
-      "rank": 1,
-      "distance": 0.051
-    },
-    {
       "title": "Beautiful Things",
       "artist": "Benson Boone",
       "year": 2024,
       "rank": 3,
-      "distance": 0.059
+      "distance": 0.0744
     },
     {
-      "title": "Careless Whisper",
-      "artist": "George Michael",
-      "year": 1985,
+      "title": "Uptown Funk",
+      "artist": "Mark Ronson featuring Bruno Mars",
+      "year": 2015,
       "rank": 1,
-      "distance": 0.0811
+      "distance": 0.0779
+    },
+    {
+      "title": "Rhinestone Cowboy",
+      "artist": "Glen Campbell",
+      "year": 1975,
+      "rank": 2,
+      "distance": 0.1069
     }
   ],
   "known_issue_notes": [
