@@ -67,6 +67,7 @@ class HookDemoLane:
     demo_id: str | None
     output_slug: str | None
     title_options: tuple[str, ...]
+    lyrics_lines: tuple[str, ...]
     clip_reference_scope: str | None
     intended_clip_sections: tuple[str, ...]
     provenance_notes: tuple[str, ...]
@@ -114,6 +115,7 @@ class HookDemoResult:
     lane_label: str | None
     demo_id: str | None
     title_options: tuple[str, ...]
+    lyrics_lines: tuple[str, ...]
     clip_reference_scope: str | None
     intended_clip_sections: tuple[str, ...]
     provenance_notes: tuple[str, ...]
@@ -173,6 +175,7 @@ def default_lanes() -> tuple[HookDemoLane, ...]:
             demo_id=None,
             output_slug=None,
             title_options=(),
+            lyrics_lines=(),
             clip_reference_scope=None,
             intended_clip_sections=(),
             provenance_notes=(),
@@ -194,6 +197,7 @@ def default_lanes() -> tuple[HookDemoLane, ...]:
             demo_id=None,
             output_slug=None,
             title_options=(),
+            lyrics_lines=(),
             clip_reference_scope=None,
             intended_clip_sections=(),
             provenance_notes=(),
@@ -215,6 +219,7 @@ def default_lanes() -> tuple[HookDemoLane, ...]:
             demo_id=None,
             output_slug=None,
             title_options=(),
+            lyrics_lines=(),
             clip_reference_scope=None,
             intended_clip_sections=(),
             provenance_notes=(),
@@ -264,6 +269,7 @@ def _load_lane(raw_lane: dict[str, object]) -> HookDemoLane:
         demo_id=_optional_string(raw_lane.get("demo_id")),
         output_slug=_optional_string(raw_lane.get("output_slug")),
         title_options=_load_string_tuple(raw_lane.get("title_options")),
+        lyrics_lines=_load_string_tuple(raw_lane.get("lyrics_lines")),
         clip_reference_scope=_optional_string(raw_lane.get("clip_reference_scope")),
         intended_clip_sections=_load_string_tuple(raw_lane.get("intended_clip_sections")),
         provenance_notes=_load_string_tuple(raw_lane.get("provenance_notes")),
@@ -321,6 +327,7 @@ def run_hook_demo_batch(config_path: Path) -> HookDemoBatchResult:
                     lane_label=lane.lane_label,
                     demo_id=lane.demo_id,
                     title_options=lane.title_options,
+                    lyrics_lines=lane.lyrics_lines,
                     clip_reference_scope=lane.clip_reference_scope,
                     intended_clip_sections=lane.intended_clip_sections,
                     provenance_notes=lane.provenance_notes,
@@ -886,12 +893,28 @@ def render_guide_vocal(
     arrangement_lift: float,
 ) -> None:
     seconds_per_beat = 60.0 / variant.tempo_bpm
+    lyric_tokens = build_lyric_tokens(lane)
+    if not lyric_tokens:
+        lyric_tokens = ("oh", "na", "on", "neon")
+
+    total_token_beats = 0.0
+    token_beats: list[float] = []
+    for index, token in enumerate(lyric_tokens):
+        beats = lyric_token_beats(token, emphasis=index % 4 == 0)
+        token_beats.append(beats)
+        total_token_beats += beats
+
+    if total_token_beats <= 0:
+        return
+
+    gap_seconds = seconds_per_beat * 0.08
+    available_seconds = max(0.0, variant.duration_seconds - gap_seconds * max(len(lyric_tokens) - 1, 0))
+    time_scale = available_seconds / (total_token_beats * seconds_per_beat)
     phrase_time = 0.0
-    note_index = 0
-    syllable_lengths = (1.0, 0.5, 0.5, 1.5)
-    while phrase_time < variant.duration_seconds:
-        length = syllable_lengths[note_index % len(syllable_lengths)] * seconds_per_beat
-        start_time = phrase_time + seconds_per_beat * 0.12
+
+    for note_index, token in enumerate(lyric_tokens):
+        length = max(0.12, token_beats[note_index] * seconds_per_beat * time_scale)
+        start_time = phrase_time + min(seconds_per_beat * 0.08, gap_seconds)
         if start_time >= variant.duration_seconds:
             return
         melodic_note = scale_step_to_midi(
@@ -903,19 +926,106 @@ def render_guide_vocal(
         progress = start_time / variant.duration_seconds if variant.duration_seconds else 0.0
         level = interpolate_energy(energy_points, progress)
         lift = section_lift(progress, arrangement_lift)
-        add_lead_event(
+        render_lyric_token(
+            buffer,
+            token=token,
+            start_time=start_time,
+            duration=min(length, max(0.14, variant.duration_seconds - start_time)),
+            frequency=midi_to_frequency(melodic_note),
+            amplitude=0.05 * level * guide_vocal_gain * max(0.92, lift),
+            sample_rate=sample_rate,
+        )
+        phrase_time += length + gap_seconds
+
+
+def build_lyric_tokens(lane: HookDemoLane) -> tuple[str, ...]:
+    lyric_lines = lane.lyrics_lines or infer_lyrics_lines(lane.intended_clip_sections)
+    tokens: list[str] = []
+    for line in lyric_lines:
+        for token in re.findall(r"[A-Za-z']+", line.lower()):
+            normalized = token.strip("'")
+            if normalized:
+                tokens.append(normalized)
+    return tuple(tokens)
+
+
+def infer_lyrics_lines(intended_sections: tuple[str, ...]) -> tuple[str, ...]:
+    lyric_lines: list[str] = []
+    for section in intended_sections:
+        _, _, payload = section.partition(":")
+        if not payload:
+            continue
+        for fragment in payload.split("/"):
+            cleaned = fragment.strip()
+            lowered = cleaned.lower()
+            if not cleaned:
+                continue
+            if any(marker in lowered for marker in ("hook repeat", "post-chorus", "silence-drop", "final chorus", "drum", "loop")):
+                continue
+            lyric_lines.append(cleaned)
+    return tuple(lyric_lines)
+
+
+def lyric_token_beats(token: str, *, emphasis: bool) -> float:
+    vowel_groups = re.findall(r"[aeiouy]+", token.lower())
+    beats = 0.45 + 0.22 * max(1, len(vowel_groups))
+    if len(token) >= 6:
+        beats += 0.08
+    if emphasis:
+        beats += 0.14
+    return beats
+
+
+def render_lyric_token(
+    buffer: list[float],
+    *,
+    token: str,
+    start_time: float,
+    duration: float,
+    frequency: float,
+    amplitude: float,
+    sample_rate: int,
+) -> None:
+    consonant_ratio = min(0.18, 0.025 * len(re.findall(r"[^aeiouy]", token.lower())))
+    consonant_duration = duration * consonant_ratio
+    vowel_start = start_time + consonant_duration * 0.35
+    vowel_duration = max(0.08, duration - consonant_duration)
+    vowel_profile = infer_vowel_profile(token)
+    if consonant_duration > 0.01:
+        add_noise_event(
             buffer,
             start_time=start_time,
-            duration=min(length, max(0.18, variant.duration_seconds - start_time)),
-            frequency=midi_to_frequency(melodic_note),
-            amplitude=0.048 * level * guide_vocal_gain * max(0.92, lift),
+            duration=consonant_duration,
+            frequency=2400.0 + 500.0 * vowel_profile[2],
+            amplitude=amplitude * 0.22,
             sample_rate=sample_rate,
-            vibrato_hz=6.2,
-            vibrato_depth=0.012,
-            overtone_blend=0.35,
+            attack=0.001,
+            release=min(0.03, consonant_duration * 0.6),
         )
-        phrase_time += length + seconds_per_beat * 0.25
-        note_index += 1
+    add_vocal_event(
+        buffer,
+        start_time=vowel_start,
+        duration=vowel_duration,
+        frequency=frequency,
+        amplitude=amplitude,
+        sample_rate=sample_rate,
+        vowel_profile=vowel_profile,
+        vibrato_hz=6.1,
+        vibrato_depth=0.01,
+    )
+
+
+def infer_vowel_profile(token: str) -> tuple[float, float, float]:
+    lowered = token.lower()
+    if any(vowel in lowered for vowel in ("ee", "ea", "ie", "i", "y")):
+        return (1.9, 3.3, 0.42)
+    if any(vowel in lowered for vowel in ("oo", "ou", "u")):
+        return (1.1, 2.2, 0.24)
+    if any(vowel in lowered for vowel in ("o", "oa")):
+        return (1.35, 2.5, 0.3)
+    if any(vowel in lowered for vowel in ("e", "ae")):
+        return (1.6, 2.9, 0.36)
+    return (1.45, 2.7, 0.32)
 
 
 def render_drums(
@@ -995,6 +1105,44 @@ def add_hat(buffer: list[float], start_time: float, sample_rate: int, *, amplitu
         attack=0.0005,
         release=0.02,
     )
+
+
+def add_vocal_event(
+    buffer: list[float],
+    *,
+    start_time: float,
+    duration: float,
+    frequency: float,
+    amplitude: float,
+    sample_rate: int,
+    vowel_profile: tuple[float, float, float],
+    vibrato_hz: float,
+    vibrato_depth: float,
+) -> None:
+    start_index, end_index = resolve_frame_window(buffer, start_time, duration, sample_rate)
+    if end_index <= start_index:
+        return
+    length = end_index - start_index
+    attack_frames = max(1, int(sample_rate * 0.008))
+    release_frames = max(1, int(sample_rate * 0.09))
+    formant_one, formant_two, breath = vowel_profile
+    for offset in range(length):
+        current_time = offset / sample_rate
+        env = envelope(offset, length, attack_frames, release_frames)
+        vibrato = 1 + vibrato_depth * math.sin(2 * math.pi * vibrato_hz * current_time)
+        fundamental = math.sin(2 * math.pi * frequency * vibrato * current_time)
+        octave = math.sin(2 * math.pi * frequency * 2.0 * current_time)
+        formant_a = math.sin(2 * math.pi * frequency * formant_one * current_time)
+        formant_b = math.sin(2 * math.pi * frequency * formant_two * current_time)
+        airy = math.sin(2 * math.pi * frequency * 0.5 * current_time)
+        composite = (
+            0.48 * fundamental
+            + 0.18 * octave
+            + 0.18 * formant_a
+            + 0.1 * formant_b
+            + 0.06 * airy * breath
+        )
+        buffer[start_index + offset] += amplitude * env * composite
 
 
 def add_lead_event(

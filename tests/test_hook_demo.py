@@ -22,6 +22,8 @@ def build_config(tmp_path: Path, *, include_lanes: bool = True) -> Path:
             """
             [[lanes]]
             name = "late-night-rnb-pop"
+            title_options = ["Midnight Static"]
+            lyrics_lines = ["Hold me in the midnight static", "Say my name and bring me back"]
             key = "A"
             mode = "minor"
             tempo_bpm = 104
@@ -123,6 +125,8 @@ def test_run_hook_demo_batch_writes_manifest_and_lane_outputs(tmp_path: Path) ->
         assert demo["chord_loop"]
         assert demo["motif_steps"]
 
+    assert manifest["lanes"][0]["lyrics_lines"] == ["Hold me in the midnight static", "Say my name and bring me back"]
+    assert manifest["demos"][0]["lyrics_lines"] == ["Hold me in the midnight static", "Say my name and bring me back"]
     assert any(demo["include_guide_vocal"] for demo in manifest["demos"])
     assert any(not demo["include_guide_vocal"] for demo in manifest["demos"])
 
@@ -170,6 +174,7 @@ def test_run_hook_demo_batch_preserves_explicit_demo_metadata_in_manifest(tmp_pa
             demo_id = "1A"
             output_slug = "lane1-demo1a-back-in-color"
             title_options = ["Back in Color", "Out Your Frame"]
+            lyrics_lines = ["Now I'm back in color", "Back where the bright lights are"]
             clip_reference_scope = "Writing-pack target timestamps, not measured offsets in the short local WAV render"
             intended_clip_sections = [
               "0:11-0:19: Now I'm back in color / Back where the bright lights are",
@@ -216,6 +221,7 @@ def test_run_hook_demo_batch_preserves_explicit_demo_metadata_in_manifest(tmp_pa
             "lane_label": "Lane 1",
             "demo_id": "1A",
             "title_options": ["Back in Color", "Out Your Frame"],
+            "lyrics_lines": ["Now I'm back in color", "Back where the bright lights are"],
             "clip_reference_scope": "Writing-pack target timestamps, not measured offsets in the short local WAV render",
             "intended_clip_sections": [
                 "0:11-0:19: Now I'm back in color / Back where the bright lights are",

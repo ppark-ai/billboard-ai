@@ -8,13 +8,13 @@
       "slug": "promo-name-on-neon-direct-chorus",
       "audio_path": "/home/patrick/billboard-ai-hit/audio/shortform_hook_tests/promo-name-on-neon-direct-chorus.wav",
       "title": "Name on Neon",
-      "overall_score": 94.32,
+      "overall_score": 94.28,
       "release_readiness": "release_watchlist",
       "component_scores": {
         "hook_clarity": 100.0,
-        "mix_headroom": 100.0,
-        "dynamic_lift": 89.98,
-        "stereo_spread": 70.28,
+        "mix_headroom": 99.98,
+        "dynamic_lift": 89.9,
+        "stereo_spread": 70.1,
         "energy_motion": 100.0,
         "tempo_fit": 100.0,
         "duration_fit": 100.0
@@ -22,11 +22,11 @@
       "feature_values": {
         "duration_seconds": 12.0,
         "sample_rate": 22050.0,
-        "rms_level": 0.20603567611829735,
+        "rms_level": 0.20506961410001912,
         "peak_level": 1.0,
-        "stereo_width_ratio": 0.22956821480516446,
-        "dynamic_lift_ratio": 1.1474851862268372,
-        "window_motion": 0.05005554966232665,
+        "stereo_width_ratio": 0.229422146716221,
+        "dynamic_lift_ratio": 1.1477063338676878,
+        "window_motion": 0.0499421206400557,
         "silence_ratio": 0.0
       },
       "notes": [
@@ -37,13 +37,13 @@
       "slug": "promo-leave-the-light-silence-drop",
       "audio_path": "/home/patrick/billboard-ai-hit/audio/shortform_hook_tests/promo-leave-the-light-silence-drop.wav",
       "title": "Leave the Light",
-      "overall_score": 77.28,
+      "overall_score": 77.05,
       "release_readiness": "competitive_demo",
       "component_scores": {
         "hook_clarity": 100.0,
-        "mix_headroom": 72.76,
+        "mix_headroom": 71.76,
         "dynamic_lift": 0.0,
-        "stereo_spread": 68.23,
+        "stereo_spread": 67.61,
         "energy_motion": 100.0,
         "tempo_fit": 100.0,
         "duration_fit": 100.0
@@ -51,11 +51,11 @@
       "feature_values": {
         "duration_seconds": 13.0,
         "sample_rate": 22050.0,
-        "rms_level": 0.16390886590011397,
-        "peak_level": 1.0,
-        "stereo_width_ratio": 0.2278689742384559,
-        "dynamic_lift_ratio": 1.4131933004160249,
-        "window_motion": 0.0394608264805164,
+        "rms_level": 0.1630191635154471,
+        "peak_level": 0.9963988158818323,
+        "stereo_width_ratio": 0.22735389794385716,
+        "dynamic_lift_ratio": 1.4139763853594984,
+        "window_motion": 0.039602041136637324,
         "silence_ratio": 0.0
       },
       "notes": [
@@ -67,13 +67,13 @@
       "slug": "promo-back-in-color-payoff-open",
       "audio_path": "/home/patrick/billboard-ai-hit/audio/shortform_hook_tests/promo-back-in-color-payoff-open.wav",
       "title": "Back in Color",
-      "overall_score": 90.17,
+      "overall_score": 90.2,
       "release_readiness": "release_watchlist",
       "component_scores": {
         "hook_clarity": 100.0,
-        "mix_headroom": 96.86,
-        "dynamic_lift": 69.05,
-        "stereo_spread": 65.28,
+        "mix_headroom": 96.32,
+        "dynamic_lift": 69.38,
+        "stereo_spread": 65.67,
         "energy_motion": 100.0,
         "tempo_fit": 100.0,
         "duration_fit": 100.0
@@ -81,11 +81,11 @@
       "feature_values": {
         "duration_seconds": 11.0,
         "sample_rate": 22050.0,
-        "rms_level": 0.20034886452543008,
+        "rms_level": 0.19954676013292627,
         "peak_level": 1.0,
-        "stereo_width_ratio": 0.22542128951076523,
-        "dynamic_lift_ratio": 1.2049413335325552,
-        "window_motion": 0.045089285900689335,
+        "stereo_width_ratio": 0.22574884974670548,
+        "dynamic_lift_ratio": 1.2040261186859653,
+        "window_motion": 0.04476171656710831,
         "silence_ratio": 0.0
       },
       "notes": [

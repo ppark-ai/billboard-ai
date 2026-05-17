@@ -21,6 +21,12 @@
       "title_options": [
         "Name on Neon"
       ],
+      "lyrics_lines": [
+        "Got my name on neon",
+        "Burning where the doubt was",
+        "Got my name on neon",
+        "Lighting up the whole club"
+      ],
       "clip_reference_scope": "Short-form hook-test target clip",
       "intended_clip_sections": [
         "0:00-0:08: Got my name on neon / Burning where the doubt was",
@@ -69,6 +75,11 @@
       "title_options": [
         "Leave the Light"
       ],
+      "lyrics_lines": [
+        "Say don't come over",
+        "Leave the light leave the light",
+        "I'm already outside"
+      ],
       "clip_reference_scope": "Short-form hook-test target clip",
       "intended_clip_sections": [
         "0:00-0:07: Say don't come over / Leave the light, leave the light",
@@ -116,6 +127,12 @@
       "output_slug": "promo-back-in-color-payoff-open",
       "title_options": [
         "Back in Color"
+      ],
+      "lyrics_lines": [
+        "Now I'm back in color",
+        "Back where the bright lights are",
+        "You lost me in the shadows",
+        "I found me in the dark"
       ],
       "clip_reference_scope": "Short-form hook-test target clip",
       "intended_clip_sections": [
@@ -196,6 +213,12 @@
       "title_options": [
         "Name on Neon"
       ],
+      "lyrics_lines": [
+        "Got my name on neon",
+        "Burning where the doubt was",
+        "Got my name on neon",
+        "Lighting up the whole club"
+      ],
       "clip_reference_scope": "Short-form hook-test target clip",
       "intended_clip_sections": [
         "0:00-0:08: Got my name on neon / Burning where the doubt was",
@@ -244,6 +267,11 @@
       "title_options": [
         "Leave the Light"
       ],
+      "lyrics_lines": [
+        "Say don't come over",
+        "Leave the light leave the light",
+        "I'm already outside"
+      ],
       "clip_reference_scope": "Short-form hook-test target clip",
       "intended_clip_sections": [
         "0:00-0:07: Say don't come over / Leave the light, leave the light",
@@ -291,6 +319,12 @@
       "demo_id": "P3",
       "title_options": [
         "Back in Color"
+      ],
+      "lyrics_lines": [
+        "Now I'm back in color",
+        "Back where the bright lights are",
+        "You lost me in the shadows",
+        "I found me in the dark"
       ],
       "clip_reference_scope": "Short-form hook-test target clip",
       "intended_clip_sections": [

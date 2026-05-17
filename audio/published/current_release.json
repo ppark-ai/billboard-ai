@@ -1,8 +1,14 @@
 {
   "winner_slug": "promo-name-on-neon-direct-chorus",
   "winner_title": "Name on Neon",
-  "overall_score": 94.32,
+  "overall_score": 94.28,
   "release_readiness": "release_watchlist",
+  "lyrics_lines": [
+    "Got my name on neon",
+    "Burning where the doubt was",
+    "Got my name on neon",
+    "Lighting up the whole club"
+  ],
   "source_manifest_path": "audio/shortform_hook_tests/manifest.json",
   "source_quality_report_path": "audio/shortform_hook_tests/quality_report.json",
   "published_mp3": "audio/published/promo-name-on-neon-direct-chorus-final-web.mp3",
@@ -15,25 +21,26 @@
       "artist": "Mark Ronson featuring Bruno Mars",
       "year": 2015,
       "rank": 1,
-      "distance": 0.0509
+      "distance": 0.051
     },
     {
       "title": "Beautiful Things",
       "artist": "Benson Boone",
       "year": 2024,
       "rank": 3,
-      "distance": 0.0592
+      "distance": 0.059
     },
     {
       "title": "Careless Whisper",
       "artist": "George Michael",
       "year": 1985,
       "rank": 1,
-      "distance": 0.0815
+      "distance": 0.0811
     }
   ],
   "known_issue_notes": [
-    "Synthetic guide-vocal artifacts remain audible in the upper register.",
+    "Lyric-guided synthetic singing now follows explicit hook lines instead of generic vowel-only guide notes.",
+    "Upper-register synthetic artifacts still remain audible because this is not yet a human-recorded final vocal.",
     "Published web audio applies gentle low-pass filtering and limiting to reduce harshness."
   ]
 }

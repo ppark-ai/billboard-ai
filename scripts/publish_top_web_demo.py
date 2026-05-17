@@ -107,6 +107,7 @@ def build_html_page(
     generated_at: str,
 ) -> str:
     hook_items = "".join(f"<li>{html.escape(item)}</li>" for item in winner_demo.get("intended_clip_sections", []))
+    lyric_items = "".join(f"<li>{html.escape(item)}</li>" for item in winner_demo.get("lyrics_lines", []))
     ref_items = "".join(
         f"<li><strong>{html.escape(str(ref['title']))}</strong> — {html.escape(str(ref['artist']))} <span class=\"muted\">({ref['year']} #{ref['rank']})</span></li>"
         for ref in nearest_refs
@@ -162,7 +163,7 @@ def build_html_page(
       <p><a href=\"{html.escape(published_mp3_rel)}\">MP3 듣기/다운로드</a> · <a href=\"{html.escape(published_wav_rel)}\">WAV 다운로드</a> · <a href=\"audio/published/current_release.json\">release metadata</a> · <a href=\"audio/shortform_hook_tests/quality_report.json\">full quality report</a></p>
       <div class=\"warn\">
         <strong>사운드 상태 메모</strong><br>
-        현재 렌더는 아직 synthetic guide-vocal 기반이라 고음역에서 약간의 인공적인 질감이 남아 있습니다. 웹 공개본은 high-end를 약하게 눌러 덜 거슬리게 만든 버전입니다.
+        현재 공개본은 곡별 가사 라인을 따라 부르도록 lyric-guided synthetic vocal을 렌더합니다. 아직 최종 사람 보컬은 아니어서 질감은 남아 있지만, 이전의 무의미한 guide vowel보다 훨씬 명확하게 가사를 따라갑니다.
       </div>
     </section>
 
@@ -180,8 +181,14 @@ def build_html_page(
           <li><strong>Tempo:</strong> {tempo} BPM</li>
           <li><strong>Duration:</strong> {duration}s</li>
           <li><strong>Original generated WAV:</strong> {html.escape(Path(winner_demo['audio_path']).name)}</li>
+          <li><strong>Vocal mode:</strong> lyric-guided synthetic singing</li>
           <li><strong>Web export:</strong> low-pass + limiter applied</li>
         </ul>
+      </article>
+
+      <article class=\"sub\">
+        <h2>현재 보컬 가사</h2>
+        <ul>{lyric_items}</ul>
       </article>
 
       <article class=\"sub\">
@@ -251,6 +258,7 @@ def main() -> int:
         "winner_title": winner_assessment.get("title"),
         "overall_score": winner_assessment["overall_score"],
         "release_readiness": winner_assessment["release_readiness"],
+        "lyrics_lines": winner_demo.get("lyrics_lines", []),
         "source_manifest_path": str(manifest_path.relative_to(repo)),
         "source_quality_report_path": str(quality_report_path.relative_to(repo)),
         "published_mp3": published_mp3_rel,
@@ -259,7 +267,8 @@ def main() -> int:
         "reference_profile_name": report.get("reference_profile_name"),
         "nearest_billboard_reference_songs": nearest_refs,
         "known_issue_notes": [
-            "Synthetic guide-vocal artifacts remain audible in the upper register.",
+            "Lyric-guided synthetic singing now follows explicit hook lines instead of generic vowel-only guide notes.",
+            "Upper-register synthetic artifacts still remain audible because this is not yet a human-recorded final vocal.",
             "Published web audio applies gentle low-pass filtering and limiting to reduce harshness.",
         ],
     }
@@ -306,10 +315,12 @@ def main() -> int:
             "1. `scripts/run_hook_demo_batch.py config/sprint2_promoted_hook_demo.toml` renders the promoted candidates.",
             "2. `scripts/evaluate_hook_demo_batch.py ... --reference-profile data/reference/billboard_preview_reference_profile.json` scores them against the Billboard reference profile.",
             "3. `scripts/publish_top_web_demo.py` exports a softened web listening file and rewrites the site around the true top scorer.",
+            "4. The published winner now uses lyric-guided synthetic singing based on explicit per-song hook lines.",
             "",
             "## Known remaining issue",
-            "- The upper register still exposes synthetic guide-vocal artifacts.",
-            "- The web version reduces harshness but is still a prototype render rather than a final vocal production.",
+            "- Lyric-guided singing is clearer than the old generic guide-vowel pass, but it is still a synthetic prototype vocal.",
+            "- The upper register still exposes some synthetic artifacts.",
+            "- The web version reduces harshness but is still not a human-recorded final topline.",
             "",
         ]
     )
