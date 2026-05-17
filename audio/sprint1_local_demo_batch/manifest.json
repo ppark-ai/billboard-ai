@@ -2,6 +2,15 @@
   "config_path": "config/sprint1_local_hook_demo.toml",
   "demo_dir": "/home/patrick/billboard-ai-hit/audio/sprint1_local_demo_batch",
   "run_command": "PYTHONPATH=src python3 scripts/run_hook_demo_batch.py config/sprint1_local_hook_demo.toml",
+  "render": {
+    "sample_rate": 22050,
+    "swing": 0.09,
+    "master_gain": 0.8,
+    "stereo_width": 0.38,
+    "arrangement_lift": 1.28,
+    "drum_bus_gain": 1.18,
+    "guide_vocal_gain": 0.88
+  },
   "lanes": [
     {
       "name": "lane-1-euphoric-recovery-a",
@@ -341,7 +350,7 @@
         0.5
       ],
       "include_guide_vocal": true,
-      "sample_rate": 16000,
+      "sample_rate": 22050,
       "seed": 16518957756776625145,
       "render_label": "Lane 1 Demo 1A",
       "lane_label": "Lane 1",
@@ -392,7 +401,7 @@
         1.0
       ],
       "include_guide_vocal": true,
-      "sample_rate": 16000,
+      "sample_rate": 22050,
       "seed": 9508718017136943785,
       "render_label": "Lane 1 Demo 1B",
       "lane_label": "Lane 1",
@@ -443,7 +452,7 @@
         1.0
       ],
       "include_guide_vocal": true,
-      "sample_rate": 16000,
+      "sample_rate": 22050,
       "seed": 17092606355821686409,
       "render_label": "Lane 3 Demo 3A",
       "lane_label": "Lane 3",
@@ -494,7 +503,7 @@
         1.0
       ],
       "include_guide_vocal": true,
-      "sample_rate": 16000,
+      "sample_rate": 22050,
       "seed": 2941534410446827057,
       "render_label": "Lane 1 Demo 1C",
       "lane_label": "Lane 1",
@@ -545,7 +554,7 @@
         0.5
       ],
       "include_guide_vocal": true,
-      "sample_rate": 16000,
+      "sample_rate": 22050,
       "seed": 4345347360307506017,
       "render_label": "Lane 3 Demo 3B",
       "lane_label": "Lane 3",
@@ -596,7 +605,7 @@
         1.0
       ],
       "include_guide_vocal": true,
-      "sample_rate": 16000,
+      "sample_rate": 22050,
       "seed": 1704404099426954117,
       "render_label": "Lane 2 Demo 2A",
       "lane_label": "Lane 2",

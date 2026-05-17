@@ -1,7 +1,11 @@
 [render]
-sample_rate = 16000
-swing = 0.08
-master_gain = 0.82
+sample_rate = 22050
+swing = 0.09
+master_gain = 0.8
+stereo_width = 0.38
+arrangement_lift = 1.28
+drum_bus_gain = 1.18
+guide_vocal_gain = 0.88
 
 [output]
 demo_dir = "/home/patrick/billboard-ai-hit/audio/sprint1_local_demo_batch"

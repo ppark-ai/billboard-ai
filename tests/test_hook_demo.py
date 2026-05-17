@@ -6,7 +6,7 @@ import textwrap
 import wave
 from pathlib import Path
 
-from billboard_ai_hit.hook_demo import load_hook_demo_config, run_hook_demo_batch
+from billboard_ai_hit.hook_demo import evaluate_hook_demo_manifest, load_hook_demo_config, run_hook_demo_batch
 
 
 def sha256_file(path: Path) -> str:
@@ -100,6 +100,15 @@ def test_run_hook_demo_batch_writes_manifest_and_lane_outputs(tmp_path: Path) ->
     assert len(manifest["lanes"]) == 3
     assert len(manifest["demos"]) == 4
     assert result.demo_dir.exists()
+    assert manifest["render"] == {
+        "sample_rate": 16000,
+        "swing": 0.08,
+        "master_gain": 0.8,
+        "stereo_width": 0.28,
+        "arrangement_lift": 1.15,
+        "drum_bus_gain": 1.0,
+        "guide_vocal_gain": 1.0,
+    }
 
     for demo in manifest["demos"]:
         audio_path = Path(demo["audio_path"])
@@ -108,6 +117,7 @@ def test_run_hook_demo_batch_writes_manifest_and_lane_outputs(tmp_path: Path) ->
             duration = handle.getnframes() / handle.getframerate()
             assert 10 <= duration <= 30.1
             assert handle.getsampwidth() == 2
+            assert handle.getnchannels() == 2
             assert handle.getframerate() == 16000
         assert demo["tempo_bpm"] > 0
         assert demo["chord_loop"]
@@ -255,3 +265,111 @@ def test_run_hook_demo_batch_makes_output_slug_unique_when_demo_count_exceeds_on
     assert [demo["slug"] for demo in manifest["demos"]] == ["same-slug-01", "same-slug-02"]
     assert [Path(demo["audio_path"]).name for demo in manifest["demos"]] == ["same-slug-01.wav", "same-slug-02.wav"]
     assert len({demo["audio_path"] for demo in manifest["demos"]}) == 2
+
+
+def test_load_hook_demo_config_supports_review_grade_render_controls(tmp_path: Path) -> None:
+    demo_dir = tmp_path / "review_grade_demo_out"
+    manifest_path = demo_dir / "manifest.json"
+    config_path = tmp_path / "review_grade_hook_demo.toml"
+    config_path.write_text(
+        textwrap.dedent(
+            f"""
+            [render]
+            sample_rate = 22050
+            swing = 0.12
+            master_gain = 0.72
+            stereo_width = 0.45
+            arrangement_lift = 1.3
+            drum_bus_gain = 1.2
+            guide_vocal_gain = 0.78
+
+            [output]
+            demo_dir = "{demo_dir}"
+            manifest_path = "{manifest_path}"
+
+            [[lanes]]
+            name = "review-grade-check"
+            key = "C"
+            mode = "major"
+            tempo_bpm = 120
+            duration_seconds = 12
+            demo_count = 1
+            include_guide_vocal = true
+            chord_loop = ["I", "V", "vi", "IV"]
+            energy_arc = [0.4, 0.75, 1.0]
+            motif_steps = [0, 2, 4, 2]
+            motif_rhythm = [1.0, 0.5, 0.5, 1.0]
+            """
+        ).strip()
+        + "\n",
+        encoding="utf-8",
+    )
+
+    config = load_hook_demo_config(config_path)
+
+    assert config.sample_rate == 22050
+    assert config.swing == 0.12
+    assert config.master_gain == 0.72
+    assert config.stereo_width == 0.45
+    assert config.arrangement_lift == 1.3
+    assert config.drum_bus_gain == 1.2
+    assert config.guide_vocal_gain == 0.78
+
+
+def test_evaluate_hook_demo_manifest_writes_repeatable_quality_reports(tmp_path: Path) -> None:
+    config_path = build_config(tmp_path)
+    batch = run_hook_demo_batch(config_path)
+
+    first = evaluate_hook_demo_manifest(batch.manifest_path)
+    second = evaluate_hook_demo_manifest(batch.manifest_path)
+
+    assert first.report_json_path.exists()
+    assert first.report_csv_path.exists()
+    assert first.winner_slug is not None
+    assert first.winner_slug == second.winner_slug
+    assert len(first.assessments) == len(second.assessments) == 4
+
+    first_scores = {assessment.slug: assessment.overall_score for assessment in first.assessments}
+    second_scores = {assessment.slug: assessment.overall_score for assessment in second.assessments}
+    assert first_scores == second_scores
+
+    for assessment in first.assessments:
+        assert 0.0 <= assessment.overall_score <= 100.0
+        assert assessment.release_readiness in {"release_watchlist", "competitive_demo", "revise", "not_ready"}
+        assert assessment.component_scores["hook_clarity"] >= 55.0
+        assert "duration_seconds" in assessment.feature_values
+        assert assessment.notes
+
+
+def test_evaluate_hook_demo_manifest_uses_reference_profile_when_provided(tmp_path: Path) -> None:
+    config_path = build_config(tmp_path)
+    batch = run_hook_demo_batch(config_path)
+
+    baseline = evaluate_hook_demo_manifest(batch.manifest_path)
+    reference_profile_path = tmp_path / "reference_profile.json"
+    reference_profile_path.write_text(
+        json.dumps(
+            {
+                "profile_name": "test-reference-profile",
+                "feature_bands": {
+                    "rms_level": {"minimum": 0.2, "target_low": 0.25, "target_high": 0.3, "maximum": 0.35},
+                    "peak_level": {"minimum": 0.9, "target_low": 0.95, "target_high": 1.0, "maximum": 1.01},
+                    "dynamic_lift_ratio": {"minimum": 0.95, "target_low": 1.0, "target_high": 1.1, "maximum": 1.25},
+                    "stereo_width_ratio": {"minimum": 0.12, "target_low": 0.18, "target_high": 0.28, "maximum": 0.42},
+                    "window_motion": {"minimum": 0.02, "target_low": 0.03, "target_high": 0.05, "maximum": 0.08},
+                },
+                "feature_caps": {"silence_ratio": {"maximum": 0.18}},
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    calibrated = evaluate_hook_demo_manifest(batch.manifest_path, reference_profile_path)
+
+    assert calibrated.reference_profile_path == reference_profile_path
+    assert calibrated.reference_profile_name == "test-reference-profile"
+    assert calibrated.assessments[0].component_scores["mix_headroom"] <= baseline.assessments[0].component_scores["mix_headroom"]
+    calibrated_json = json.loads(calibrated.report_json_path.read_text(encoding="utf-8"))
+    assert calibrated_json["reference_profile_path"] == str(reference_profile_path)
+    assert calibrated_json["reference_profile_name"] == "test-reference-profile"

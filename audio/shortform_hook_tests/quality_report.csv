@@ -1,0 +1,4 @@
+slug,title,overall_score,release_readiness,hook_clarity,mix_headroom,dynamic_lift,stereo_spread,energy_motion,tempo_fit,duration_fit,rms_level,peak_level,stereo_width_ratio,dynamic_lift_ratio,window_motion,silence_ratio,notes
+promo-name-on-neon-direct-chorus,Name on Neon,94.32,release_watchlist,100.00,100.00,89.98,70.28,100.00,100.00,100.00,0.20604,1.00000,0.22957,1.14749,0.05006,0.00000,hook metadata is strong enough for an AI-first preflight
+promo-leave-the-light-silence-drop,Leave the Light,77.28,competitive_demo,100.00,72.76,0.00,68.23,100.00,100.00,100.00,0.16391,1.00000,0.22787,1.41319,0.03946,0.00000,hook metadata is strong enough for an AI-first preflight | section lift is too flat or too exaggerated for a release-ready hook cut
+promo-back-in-color-payoff-open,Back in Color,90.17,release_watchlist,100.00,96.86,69.05,65.28,100.00,100.00,100.00,0.20035,1.00000,0.22542,1.20494,0.04509,0.00000,hook metadata is strong enough for an AI-first preflight

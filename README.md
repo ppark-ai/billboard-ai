@@ -59,7 +59,7 @@ What it does:
 - writes per-demo audio files plus `/home/patrick/billboard-ai-hit/audio/hook_demo_batches/manifest.json`
 
 Config knobs in `config/hook_demo.toml`:
-- `[render]` — sample rate, swing, and master gain
+- `[render]` — sample rate, swing, master gain, stereo width, arrangement lift, drum-bus gain, and guide-vocal gain
 - `[output]` — destination directory and manifest path
 - `[[lanes]]` — `tempo_bpm`, `duration_seconds`, `demo_count`, `chord_loop`, `energy_arc`, `motif_steps`, `motif_rhythm`, `include_guide_vocal`, `key`, and `mode`
 - optional `[[lanes]]` metadata fields — `render_label`, `lane_label`, `demo_id`, `output_slug`, `title_options`, `clip_reference_scope`, `intended_clip_sections`, `provenance_notes`
