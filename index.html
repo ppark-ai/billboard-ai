@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Billboard AI Hit — Final Web Demo</title>
+  <title>Billboard AI Hit — Final Winner</title>
   <style>
     :root { color-scheme: dark; --bg:#08111f; --panel:#111b2d; --line:#223454; --text:#eef4ff; --muted:#a9b6cf; --accent:#7dd3fc; --warn:#f7d58a; }
     * { box-sizing: border-box; }
     body { margin:0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background:linear-gradient(180deg,#08111f,#101a2e 45%,#08111f); color:var(--text); }
-    .wrap { max-width:900px; margin:0 auto; padding:40px 20px 72px; }
+    .wrap { max-width:980px; margin:0 auto; padding:40px 20px 72px; }
     .panel { background:rgba(17,27,45,.94); border:1px solid var(--line); border-radius:22px; padding:24px; box-shadow:0 10px 28px rgba(0,0,0,.22); }
     h1 { font-size:clamp(2rem,5vw,3.3rem); margin:0 0 10px; }
-    h2 { margin:0 0 12px; font-size:1.55rem; }
+    h2 { margin:0 0 12px; font-size:1.3rem; }
     p, li { line-height:1.65; }
     .muted { color:var(--muted); }
     .badges { display:flex; flex-wrap:wrap; gap:10px; margin:16px 0 0; }
     .badge { border:1px solid var(--line); border-radius:999px; padding:8px 12px; color:var(--accent); background:rgba(125,211,252,.08); font-size:.92rem; }
     .warn { margin:18px 0 0; border:1px solid #5b4520; background:#2b210d; color:var(--warn); border-radius:16px; padding:14px 16px; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin-top:18px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:18px; }
     .sub { background:#0c1528; border:1px solid var(--line); border-radius:18px; padding:18px; }
     audio { width:100%; margin:16px 0 14px; }
     code { background:#0b1426; border:1px solid var(--line); padding:2px 6px; border-radius:8px; }
@@ -27,61 +27,50 @@
 <body>
   <main class="wrap">
     <section class="panel">
-      <p class="muted">Billboard AI Hit · published single-demo page</p>
-      <h1>Back in Color</h1>
-      <p>예전 데모들은 모두 웹 공개 목록에서 내리고, <strong>가장 마지막에 생성된 버전</strong>만 남겼습니다. 현재 공개된 트랙은 <code>promo-back-in-color-payoff-open</code> 하나입니다.</p>
+      <p class="muted">Billboard AI Hit · final automated winner</p>
+      <h1>Name on Neon</h1>
+      <p>현재 웹에는 <strong>실제 AI 품질 점수가 가장 높은 곡</strong>만 표시합니다. 이 우승 곡은 Billboard preview reference calibration 기준에서 현재 배치 최고점입니다.</p>
       <div class="badges">
-        <span class="badge">Published track: 1</span>
-        <span class="badge">Latest generated at: 2026-05-17T11:15:56</span>
-        <span class="badge">AI score: 90.17</span>
+        <span class="badge">Winner slug: promo-name-on-neon-direct-chorus</span>
+        <span class="badge">AI score: 94.32</span>
         <span class="badge">Label: release_watchlist</span>
+        <span class="badge">Generated: 2026-05-17T14:19:47</span>
       </div>
-      <audio controls preload="none" src="audio/published/back-in-color-final-web.mp3"></audio>
-      <p><a href="audio/published/back-in-color-final-web.mp3">MP3 듣기/다운로드</a> · <a href="audio/published/back-in-color-final-web.wav">WAV 다운로드</a> · <a href="audio/shortform_hook_tests/manifest.json">manifest.json</a> · <a href="audio/shortform_hook_tests/quality_report.json">quality_report.json</a></p>
+      <audio controls preload="none" src="audio/published/promo-name-on-neon-direct-chorus-final-web.mp3"></audio>
+      <p><a href="audio/published/promo-name-on-neon-direct-chorus-final-web.mp3">MP3 듣기/다운로드</a> · <a href="audio/published/promo-name-on-neon-direct-chorus-final-web.wav">WAV 다운로드</a> · <a href="audio/published/current_release.json">release metadata</a> · <a href="audio/shortform_hook_tests/quality_report.json">full quality report</a></p>
       <div class="warn">
-        <strong>현재 상태 메모</strong><br>
-        사용자가 지적한 것처럼 이 렌더는 아직도 고음역 synthetic guide-vocal 아티팩트가 남아 있습니다. 웹 공개본은 상단 고역을 약하게 눌러서 거슬림을 조금 줄였지만, 완성 마스터는 아닙니다.
+        <strong>사운드 상태 메모</strong><br>
+        현재 렌더는 아직 synthetic guide-vocal 기반이라 고음역에서 약간의 인공적인 질감이 남아 있습니다. 웹 공개본은 high-end를 약하게 눌러 덜 거슬리게 만든 버전입니다.
       </div>
     </section>
 
     <section class="grid">
       <article class="sub">
-        <h2>이 곡에 표시한 Billboard 기반 레퍼런스</h2>
-        <p class="muted">아래 곡들은 이 데모와 가장 가까운 <strong>Billboard reference-calibration 매치</strong>입니다. 멜로디를 베꼈다는 뜻이 아니라, AI 품질 게이트가 비교한 오디오 특징상 근접 레퍼런스라는 뜻입니다.</p>
-        <ol>
-          <li><strong>Beautiful Things</strong> — Benson Boone <span class="muted">(2024 #3)</span></li>
-          <li><strong>Uptown Funk</strong> — Mark Ronson featuring Bruno Mars <span class="muted">(2015 #1)</span></li>
-          <li><strong>Careless Whisper</strong> — George Michael <span class="muted">(1985 #1)</span></li>
-        </ol>
+        <h2>이 곡과 함께 표시하는 Billboard 레퍼런스</h2>
+        <p class="muted">아래 곡들은 법적/작곡적 원곡 표시가 아니라, 현재 AI 품질 게이트가 비교한 <strong>reference-calibration 근접 곡</strong>입니다.</p>
+        <ol><li><strong>Uptown Funk</strong> — Mark Ronson featuring Bruno Mars <span class="muted">(2015 #1)</span></li><li><strong>Beautiful Things</strong> — Benson Boone <span class="muted">(2024 #3)</span></li><li><strong>Careless Whisper</strong> — George Michael <span class="muted">(1985 #1)</span></li></ol>
       </article>
 
       <article class="sub">
-        <h2>현재 곡 정보</h2>
+        <h2>현재 우승 곡 정보</h2>
         <ul>
-          <li><strong>Title:</strong> Back in Color</li>
-          <li><strong>Slug:</strong> promo-back-in-color-payoff-open</li>
-          <li><strong>Tempo:</strong> 124 BPM</li>
-          <li><strong>Duration:</strong> 11.0s</li>
-          <li><strong>Original generated WAV:</strong> promo-back-in-color-payoff-open.wav</li>
+          <li><strong>Title:</strong> Name on Neon</li>
+          <li><strong>Tempo:</strong> 128 BPM</li>
+          <li><strong>Duration:</strong> 12.0s</li>
+          <li><strong>Original generated WAV:</strong> promo-name-on-neon-direct-chorus.wav</li>
           <li><strong>Web export:</strong> low-pass + limiter applied</li>
         </ul>
       </article>
 
       <article class="sub">
         <h2>클립 훅 구간</h2>
-        <ul>
-          <li>0:00-0:08: Now I'm back in color / Back where the bright lights are</li><li>0:08-0:12: You lost me in the shadows / I found me in the dark</li>
-        </ul>
+        <ul><li>0:00-0:08: Got my name on neon / Burning where the doubt was</li><li>0:08-0:14: hook repeat or post-chorus neon loop</li></ul>
       </article>
 
       <article class="sub">
-        <h2>삭제/정리 상태</h2>
-        <ul>
-          <li>기존 sprint-1 demo batch 삭제</li>
-          <li>기존 hook_demo_batches 삭제</li>
-          <li>이전 shortform promo WAV 2개 삭제</li>
-          <li>웹 출력물도 동일하게 정리</li>
-        </ul>
+        <h2>프로비넌스 / 파이프라인</h2>
+        <ul><li>Promoted from Lane 1 Demo 1C</li><li>Goal: strongest direct-chorus clip-first version</li></ul>
+        <p class="muted">Renderer: <code>scripts/run_hook_demo_batch.py</code><br>Judge: <code>scripts/evaluate_hook_demo_batch.py</code><br>Publisher: <code>scripts/publish_top_web_demo.py</code></p>
       </article>
     </section>
   </main>

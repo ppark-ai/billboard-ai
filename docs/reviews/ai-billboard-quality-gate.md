@@ -1,29 +1,23 @@
 # AI Billboard-Like Quality Gate
 
-**Status:** single published demo retained after user-directed cleanup  
-**Date:** 2026-05-17  
-**Published web audio:** `audio/published/back-in-color-final-web.mp3`
+**Status:** final winner published to web from the automated Billboard-calibrated batch  
+**Winner:** `promo-name-on-neon-direct-chorus`  
+**Title:** Name on Neon  
+**AI score:** 94.32  
+**Release label:** `release_watchlist`
 
-## What remains published
-Only the most recently generated promoted demo remains published on the website:
-- **Back in Color** — `promo-back-in-color-payoff-open`
-- Generated at: 2026-05-17T11:15:56
-- AI score: 90.17
-- Label: `release_watchlist`
-
-## Billboard songs now shown with the published track
-These nearest matches were computed in the same feature space as the Billboard preview reference calibration:
-- 2024 #3 **Beautiful Things** — Benson Boone
+## Billboard reference-calibration neighbors shown on the site
 - 2015 #1 **Uptown Funk** — Mark Ronson featuring Bruno Mars
+- 2024 #3 **Beautiful Things** — Benson Boone
 - 1985 #1 **Careless Whisper** — George Michael
 
-**Interpretation note:** these are calibration neighbors, not claims of direct melodic derivation.
+These labels mean nearest audio-feature matches inside the Billboard preview reference set. They are not claims of melodic copying or source-song derivation.
 
-## Known issue still present
-- The synthetic guide vocal remains unnatural in the upper register.
-- The web export was lightly low-pass filtered and peak-limited to reduce harshness, but it is still a prototype.
+## Pipeline
+1. `scripts/run_hook_demo_batch.py config/sprint2_promoted_hook_demo.toml` renders the promoted candidates.
+2. `scripts/evaluate_hook_demo_batch.py ... --reference-profile data/reference/billboard_preview_reference_profile.json` scores them against the Billboard reference profile.
+3. `scripts/publish_top_web_demo.py` exports a softened web listening file and rewrites the site around the true top scorer.
 
-## Cleanup completed
-- Removed old sprint-1 web demo batch assets
-- Removed old hook-demo batch assets
-- Removed the other two promoted short-form WAVs from the published set
+## Known remaining issue
+- The upper register still exposes synthetic guide-vocal artifacts.
+- The web version reduces harshness but is still a prototype render rather than a final vocal production.

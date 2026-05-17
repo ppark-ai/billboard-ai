@@ -1,0 +1,39 @@
+{
+  "winner_slug": "promo-name-on-neon-direct-chorus",
+  "winner_title": "Name on Neon",
+  "overall_score": 94.32,
+  "release_readiness": "release_watchlist",
+  "source_manifest_path": "audio/shortform_hook_tests/manifest.json",
+  "source_quality_report_path": "audio/shortform_hook_tests/quality_report.json",
+  "published_mp3": "audio/published/promo-name-on-neon-direct-chorus-final-web.mp3",
+  "published_wav": "audio/published/promo-name-on-neon-direct-chorus-final-web.wav",
+  "reference_profile_path": "data/reference/billboard_preview_reference_profile.json",
+  "reference_profile_name": "billboard-year-end-preview-reference-v1",
+  "nearest_billboard_reference_songs": [
+    {
+      "title": "Uptown Funk",
+      "artist": "Mark Ronson featuring Bruno Mars",
+      "year": 2015,
+      "rank": 1,
+      "distance": 0.0509
+    },
+    {
+      "title": "Beautiful Things",
+      "artist": "Benson Boone",
+      "year": 2024,
+      "rank": 3,
+      "distance": 0.0592
+    },
+    {
+      "title": "Careless Whisper",
+      "artist": "George Michael",
+      "year": 1985,
+      "rank": 1,
+      "distance": 0.0815
+    }
+  ],
+  "known_issue_notes": [
+    "Synthetic guide-vocal artifacts remain audible in the upper register.",
+    "Published web audio applies gentle low-pass filtering and limiting to reduce harshness."
+  ]
+}
